@@ -1,5 +1,5 @@
 # Etapa de construcción
-FROM gradle:7.6.2-jdk21 AS build
+FROM gradle:7.6.2-jdk17 AS build
 WORKDIR /app
 COPY . .
 RUN ./gradlew bootJar --no-daemon
