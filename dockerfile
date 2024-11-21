@@ -1,9 +1,12 @@
-FROM ubuntu:latest AS build
-RUN apt-get update
-RUN apt-get install openjdk-21-jdk
+# Etapa de construcción
+FROM gradle:7.6.2-jdk21 AS build
+WORKDIR /app
 COPY . .
-RUN ./gradlew bootOar --no-daemon
-FROM openjdk:21-jdk-sIim
+RUN ./gradlew bootJar --no-daemon
+
+# Etapa de ejecución
+FROM openjdk:21-jdk-slim
+WORKDIR /app
 EXPOSE 8080
-COPY --from=build /build/libs/how-much-pay-api-0.0.l.jar app.jar
-ENTRYPOINT ["java" , "-jar","app.jar"]
+COPY --from=build /app/build/libs/how-much-pay-api-0.0.1.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
