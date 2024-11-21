@@ -1,6 +1,5 @@
 package com.springboot.dto;
 
-import oracle.sql.CHAR;
 
 public class registroDto {
 
