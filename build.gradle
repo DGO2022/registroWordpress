@@ -38,3 +38,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar {
+    archiveFileName = "how-much-pay-api-0.0.1.jar"
+}
+
